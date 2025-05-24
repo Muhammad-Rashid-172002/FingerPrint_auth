@@ -1,3 +1,4 @@
+import 'package:figerprint/screen/Constractor/secondScreen.dart';
 import 'package:flutter/material.dart';
 
 class ConstractorScreen extends StatefulWidget {
@@ -21,12 +22,32 @@ class _ConstractorScreenState extends State<ConstractorScreen> {
               controller: nameController,
               decoration: InputDecoration(
                 labelText: 'Enter your name',
-                border: OutlineInputBorder(),
+                hintText: 'Name',
+                prefixIcon: const Icon(Icons.person),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    nameController.clear();
+                  },
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
+                ),
               ),
             ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder:
+                        (context) => Secondscreen(name: nameController.text),
+                  ),
+                );
               },
               child: const Text('Submit'),
             ),
